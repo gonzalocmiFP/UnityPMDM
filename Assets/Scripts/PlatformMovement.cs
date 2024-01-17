@@ -6,6 +6,7 @@ public class PlatformMovement : MonoBehaviour
 {
     public KeyCode rightKey, leftKey;
     public float speed;
+    public AudioClip[] stepSounds;
 
     private Rigidbody2D _rb;
     private SpriteRenderer _spriteRenderer;
@@ -44,6 +45,11 @@ public class PlatformMovement : MonoBehaviour
         {
             _animator.SetBool("isWalking", false);
         }
+    }
+
+    public void PlayStepSound()
+    {
+        AudioManager.instance.PlayAudio3D(stepSounds[Random.Range(0, stepSounds.Length)], transform.position, 1f);
     }
 
     private void FixedUpdate()
